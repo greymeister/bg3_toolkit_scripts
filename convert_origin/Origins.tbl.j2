@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="b923d561-af5a-47d5-b34a-f4c4fb8c4dcc">
+    <stat_objects>
+        {%- for node in origin_nodes %}
+        <stat_object is_substat="false">
+            <fields>
+                <field name="Name" type="NameTableFieldDefinition" value="New_Stat_{{ loop.index0 }}" />
+                <field name="UUID" type="IdTableFieldDefinition" value="{{ node.UUID.value }}" />
+                {%- if node.AppearanceLocked is defined and node.AppearanceLocked.value|length > 0 %}
+                <field name="AppearanceLocked" type="BoolTableFieldDefinition" value="{{ node.AppearanceLocked.value }}" />
+                {%- endif %}
+                <field name="DisplayName" type="TranslatedStringTableFieldDefinition" handle="{{ node.DisplayName.handle }}" version="{{ node.DisplayName.version }}" />
+                <field name="NameFS" type="FixedStringTableFieldDefinition" value="{{ node.Name.value }}" />
+                {%- if node.Description is defined and node.Description.handle|length > 0 %}
+                <field name="Description" type="TranslatedStringTableFieldDefinition" handle="{{ node.Description.handle }}" version="{{ node.Description.version }}" />
+                {%- endif %}
+                <field name="Passives" type="StringTableFieldDefinition" value="{{ node.Passives.value }}" />
+                {%- if node.VoiceTableUUID is defined and node.VoiceTableUUID.value|length > 0 %}
+                <field name="VoiceTableUUID" type="GuidTableFieldDefinition" value="{{ node.VoiceTableUUID.value }}" />
+                {%- endif %}
+                <field name="AvailableInCharacterCreation" type="EnumerationTableFieldDefinition" value="{{ node.AvailableInCharacterCreation.value | lookup_availability }}" enumeration_type_name="CharacterCreatorAvailabilityType" version="1" />
+                {%- if node.children is defined and node.children.node is defined and node.children.node | lookup_really_tag is not none %}
+                <field name="ReallyTags" type="GuidObjectListTableFieldDefinition" value="{{ node.children.node | lookup_really_tag }}" />
+                {%- endif %}
+                <field name="RaceUUID" type="GuidTableFieldDefinition" value="{{ node.RaceUUID.value }}" />
+                {%- if node.SubRaceUUID is defined and node.SubRaceUUID.value|length > 0 %}
+                <field name="SubRaceUUID" type="GuidTableFieldDefinition" value="{{ node.SubRaceUUID.value }}" />
+                {%- endif %}
+                <field name="ClassUUID" type="GuidTableFieldDefinition" value="{{ node.ClassUUID.value }}" />
+                {%- if node.SubClassUUID is defined and node.SubClassUUID.value|length > 0 %}
+                <field name="SubClassUUID" type="GuidTableFieldDefinition" value="{{ node.SubClassUUID.value }}" />
+                {%- endif %}
+                <field name="BodyType" type="EnumerationTableFieldDefinition" value="{{ node.BodyType.value | lookup_body_type }}" enumeration_type_name="BodyType" version="1" />
+                {%- if node.LockClass is defined and node.LockClass.value|length > 0 %}
+                <field name="LockClass" type="BoolTableFieldDefinition" value="{{ node.LockClass.value }}" />
+                {%- endif %}
+                <field name="BodyShape" type="EnumerationTableFieldDefinition" value="{{ node.BodyShape.value | lookup_body_shape }}" enumeration_type_name="BodyShape" version="1" />
+                {%- if node.LockBody is defined and node.LockBody.value|length > 0 %}
+                <field name="LockBody" type="BoolTableFieldDefinition" value="{{ node.LockBody.value }}" />
+                {%- endif %}
+                {%- if node.LockRace is defined and node.LockRace.value|length > 0 %}
+                <field name="LockRace" type="BoolTableFieldDefinition" value="{{ node.LockRace.value }}" />
+                {%- endif %}
+                {%- if node.children is defined and node.children.node is defined and node.children.node | lookup_appearance_tag is not none %}
+                <field name="AppearanceTags" type="GuidObjectListTableFieldDefinition" value="{{ node.children.node | lookup_appearance_tag }}" />
+                {%- endif %}
+                <field name="BackgroundUUID" type="GuidTableFieldDefinition" value="{{ node.BackgroundUUID.value }}" />
+                {%- if node.DefaultsTemplate is defined and node.DefaultsTemplate.value|length > 0 %}
+                <field name="DefaultsTemplate" type="GuidTableFieldDefinition" value="{{ node.DefaultsTemplate.value }}" />
+                {%- endif %}
+                {%- if node.GlobalTemplate is defined and node.GlobalTemplate.value|length > 0 %}
+                <field name="GlobalTemplate" type="GuidTableFieldDefinition" value="{{ node.GlobalTemplate.value }}" />
+                {%- endif %}
+                {%- if node.IntroDialogUUID is defined and node.IntroDialogUUID.value|length > 0 %}
+                <field name="IntroDialogUUID" type="GuidTableFieldDefinition" value="{{ node.IntroDialogUUID.value }}" />
+                {%- endif %}
+                {%- if node.GodUUID is defined and node.GodUUID.value|length > 0 %}
+                <field name="GodUUID" type="GuidTableFieldDefinition" value="{{ node.GodUUID.value }}" />
+                {%- endif %}
+                {%- if node.ClassEquipmentOverride is defined and node.ClassEquipmentOverride.value|length > 0 %}
+                <field name="ClassEquipmentOverride" type="FixedStringTableFieldDefinition" value="{{ node.ClassEquipmentOverride.value }}" />
+                {%- endif %}
+                {%- if node.ExcludesOriginUUID is defined and node.ExcludesOriginUUID.value|length > 0 %}
+                <field name="ExcludesOriginUUID" type="GuidTableFieldDefinition" value="{{ node.ExcludesOriginUUID.value }}" />
+                {%- endif %}
+                {%- if node.Unique is defined and node.Unique.value|length > 0 %}
+                <field name="Unique" type="BoolTableFieldDefinition" value="{{ node.Unique.value }}" />
+                {%- endif %}
+            </fields>
+        </stat_object>
+        {%- endfor %}
+    </stat_objects>
+</stats>

@@ -1,0 +1,8 @@
+Pipfile.lock
+.idea
+*.json
+*.lsx
+*.bak
+*.tbl
+build/
+dist/

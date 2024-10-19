@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="3b034ae3-d260-4a73-b10f-9e954489d19d">
+    <stat_objects>
+        {%- for node in cca_nodes %}
+        <stat_object is_substat="false">
+            <fields>
+                <field name="Name" type="NameTableFieldDefinition" value="New_Stat_{{ loop.index0 }}" />
+                <field name="UUID" type="IdTableFieldDefinition" value="{{ node.UUID.value }}" />
+                <field name="RaceUUID" type="GuidTableFieldDefinition" value="{{ node.RaceUUID.value }}" />
+                <field name="BodyType" type="EnumerationTableFieldDefinition" value="{{ node.BodyType.value | lookup_body_type }}" enumeration_type_name="BodyType" version="1" />
+                <field name="BodyShape" type="EnumerationTableFieldDefinition" value="{{ node.BodyShape.value | lookup_body_shape }}" enumeration_type_name="BodyShape" version="1" />
+                <field name="SlotName" type="EnumerationTableFieldDefinition" value="{{ node.SlotName.value }}" enumeration_type_name="CharacterCreatorSlotNames" version="1" />
+                <field name="VisualResource" type="GuidTableFieldDefinition" value="{{ node.VisualResource.value }}" />
+                <field name="DefaultSkinColor" type="GuidTableFieldDefinition" value=" {{ node.DefaultSkinColor.value }}" />
+                <field name="DisplayName" type="TranslatedStringTableFieldDefinition" handle="{{ node.DisplayName.handle }}" version="{{ node.DisplayName.version }}" />
+            </fields>
+        </stat_object>
+        {%- endfor %}
+    </stat_objects>
+</stats>
